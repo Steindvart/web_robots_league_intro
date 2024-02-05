@@ -1,4 +1,3 @@
-DROP SCHEMA IF EXISTS `Издательство`;
 CREATE SCHEMA IF NOT EXISTS `Издательство`;
 
 USE `Издательство`;
