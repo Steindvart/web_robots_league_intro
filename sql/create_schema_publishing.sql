@@ -1,47 +1,50 @@
-DROP SCHEMA IF EXISTS `publishing`;
-CREATE SCHEMA IF NOT EXISTS `publishing`;
+DROP SCHEMA IF EXISTS `Издательство`;
+CREATE SCHEMA IF NOT EXISTS `Издательство`;
 
-USE `publishing`;
+USE `Издательство`;
 
-CREATE TABLE IF NOT EXISTS Books (
+CREATE TABLE IF NOT EXISTS Книги (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     ISBN VARCHAR(255) NOT NULL,
-    Name VARCHAR(255),
-    Pages INT,
-    Publish_date DATE,
+    Название VARCHAR(255),
+    Страницы INT,
+    Дата_публикации DATE,
     UNIQUE (ISBN)
 );
 
-CREATE TABLE IF NOT EXISTS Authors (
+CREATE TABLE IF NOT EXISTS Авторы (
     ID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255) NOT NULL,
-    Surname VARCHAR(255)
+    Имя VARCHAR(255) NOT NULL,
+    Фамилия VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS Genres (
+CREATE TABLE IF NOT EXISTS Жанры (
     ID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255) NOT NULL,
-	UNIQUE (Name)
+    Название VARCHAR(255) NOT NULL,
+	UNIQUE (Название)
 );
 
-CREATE TABLE IF NOT EXISTS Books_Authors (
-    Book_ID INT,
-    Author_ID INT,
-    FOREIGN KEY (Book_ID) REFERENCES Books(ID),
-    FOREIGN KEY (Author_ID) REFERENCES Authors(ID)
+CREATE TABLE IF NOT EXISTS Книги_Авторы (
+    Книга_ID INT,
+    Автор_ID INT,
+    FOREIGN KEY (Книга_ID) REFERENCES Книги(ID),
+    FOREIGN KEY (Автор_ID) REFERENCES Авторы(ID)
 );
 
-CREATE TABLE IF NOT EXISTS Books_Genres (
-    Book_ID INT,
-    Genre_ID INT,
-    FOREIGN KEY (Book_ID) REFERENCES Books(ID),
-    FOREIGN KEY (Genre_ID) REFERENCES Genres(ID)
+CREATE TABLE IF NOT EXISTS Книги_Жанры (
+    Книга_ID INT,
+    Жанр_ID INT,
+    FOREIGN KEY (Книга_ID) REFERENCES Книги(ID),
+    FOREIGN KEY (Жанр_ID) REFERENCES Жанры(ID)
 );
 
-CREATE VIEW Books_Authors_Genres AS
-SELECT b.*, CONCAT(a.Name, ' ', a.Surname) AS Author, g.Name AS Genre
-FROM Books b
-JOIN Books_Authors ba ON b.ID = ba.Book_ID
-JOIN Authors a ON a.ID = ba.Author_ID
-JOIN Books_Genres bg ON b.ID = bg.Book_ID
-JOIN Genres g ON bg.Genre_ID = g.ID;
+CREATE VIEW Книги_Авторы_Жанры AS
+SELECT b.*,
+	   GROUP_CONCAT(DISTINCT CONCAT(a.Имя, ' ', a.Фамилия) ORDER BY CONCAT(a.Имя, ' ', a.Фамилия) SEPARATOR ', ') AS Авторы,
+       GROUP_CONCAT(DISTINCT g.Название ORDER BY g.Название SEPARATOR ', ') AS Жанры
+FROM Книги b
+JOIN Книги_Авторы ba ON b.ID = ba.Книга_ID
+JOIN Авторы a ON a.ID = ba.Автор_ID
+JOIN Книги_Жанры bg ON b.ID = bg.Книга_ID
+JOIN Жанры g ON bg.Жанр_ID = g.ID
+GROUP BY b.ID;

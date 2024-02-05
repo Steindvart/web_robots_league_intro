@@ -1,1 +1,2 @@
-SELECT * FROM publishing.Books; 
+SELECT *
+FROM Издательство.Книги_Авторы_Жанры b;

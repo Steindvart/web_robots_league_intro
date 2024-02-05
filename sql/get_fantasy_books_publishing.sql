@@ -1,9 +1,11 @@
-USE `publishing`;
+USE `Издательство`;
 
-SELECT b.Name AS Book_Name, CONCAT(a.Name, ' ', a.Surname) AS Author
-FROM Books b
-JOIN Books_Authors ba ON b.ID = ba.Book_ID
-JOIN Authors a ON ba.Author_ID = a.ID
-JOIN Books_Genres bg ON b.ID = bg.Book_ID
-JOIN Genres g ON bg.Genre_ID = g.ID
-WHERE g.Name = 'Fantasy';
+SELECT b.Название AS Название_книги, 
+	   GROUP_CONCAT(DISTINCT CONCAT(a.Имя, ' ', a.Фамилия) ORDER BY CONCAT(a.Имя, ' ', a.Фамилия) SEPARATOR ', ') AS Авторы
+FROM Книги b
+JOIN Книги_Авторы ba ON b.ID = ba.Книга_ID
+JOIN Авторы a ON ba.Автор_ID = a.ID
+JOIN Книги_Жанры bg ON b.ID = bg.Книга_ID
+JOIN Жанры g ON bg.Жанр_ID = g.ID
+WHERE g.Название = 'Фантастика'
+GROUP BY b.ID;
