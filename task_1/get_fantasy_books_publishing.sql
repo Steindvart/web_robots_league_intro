@@ -1,6 +1,6 @@
 USE `Издательство`;
 
-SELECT b.Название AS Название_книги, 
+SELECT b.Название AS Название_книги,
 	   GROUP_CONCAT(DISTINCT CONCAT(a.Имя, ' ', a.Фамилия) ORDER BY CONCAT(a.Имя, ' ', a.Фамилия) SEPARATOR ', ') AS Авторы
 FROM Книги b
 JOIN Книги_Авторы ba ON b.ID = ba.Книга_ID
