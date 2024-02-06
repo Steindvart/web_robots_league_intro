@@ -43,6 +43,16 @@
   import DadataSuggestions from './dadata-suggestions';
   import axios from 'axios';
 
+  function validatePhone(phone) {
+    const phoneRegex = /^(8|\+7|7)\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/;
+    return phoneRegex.test(phone);
+  }
+
+function validateEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailRegex.test(email);
+}
+
   export default {
     name: 'feedback-form',
     components: {
@@ -59,6 +69,16 @@
     },
     methods: {
       submitData() {
+        if (!validatePhone(this.phone)) {
+          alert('Номер телефона указан в неверном формате.\nИспользуйте формат "79991234567"');
+          return;
+        }
+
+        if (this.email !== '' && !validateEmail(this.email)) {
+          alert('Email указан в неверном формате.\nИспользуйте формат "name@ya.ru"');
+          return;
+        }
+
         const formData = {
           name: this.name,
           address: this.address,
