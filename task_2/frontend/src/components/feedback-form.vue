@@ -37,12 +37,11 @@
     </div>
     <button type="submit">Отправить</button>
   </form>
-  <!-- name : <br />
-  {{ name }} -->
 </template>
 
 <script>
   import DadataSuggestions from './dadata-suggestions';
+  import axios from 'axios';
 
   export default {
     name: 'feedback-form',
@@ -60,7 +59,23 @@
     },
     methods: {
       submitData() {
-        console.log(this.name, this.address, this.phone, this.email, this.comment);
+        const formData = {
+          name: this.name,
+          address: this.address,
+          email: this.email,
+          phone: this.phone,
+          comment: this.comment
+        };
+
+        console.log("Send feedback form data: ", formData);
+
+        axios.post('/api/feedback-form.php', formData)
+            .then(response => {
+              console.log(response.data);
+            })
+            .catch(error => {
+              console.error(error);
+            });
       }
     }
   }
