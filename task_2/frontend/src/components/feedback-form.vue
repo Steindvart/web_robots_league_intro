@@ -94,6 +94,7 @@ function validateEmail(email) {
               console.log(response.data);
             })
             .catch(error => {
+              alert(error.response.data.error);
               console.error(error);
             });
       }
