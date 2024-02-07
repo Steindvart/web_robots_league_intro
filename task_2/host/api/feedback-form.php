@@ -40,22 +40,20 @@ function insertToFeedbackTable($data, $db_path) {
   return ['success' => true];
 }
 
-function createDbIfNotExists($db_path) {
-  if (!file_exists($db_path)) {
-    $pdo = new PDO('sqlite:' . $db_path);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+function createFeedbackDb($db_path) {
+  $pdo = new PDO('sqlite:' . $db_path);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $db_schema = "CREATE TABLE feedback (
-      id INTEGER PRIMARY KEY,
-      name TEXT,
-      address TEXT,
-      phone TEXT,
-      email TEXT,
-      comment TEXT
-    )";
+  $db_schema = "CREATE TABLE feedback (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    address TEXT,
+    phone TEXT,
+    email TEXT,
+    comment TEXT
+  )";
 
-    $pdo->exec($db_schema);
-  }
+  $pdo->exec($db_schema);
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
@@ -68,7 +66,9 @@ if (isset($response['error'])) {
 }
 
 $db_path = "feedback.db";
-createDbIfNotExists($db_path);
+if (!file_exists($db_path)) {
+  createFeedbackDb($db_path);
+}
 
 $response = insertToFeedbackTable($data, $db_path);
 if (isset($response['error'])) {
