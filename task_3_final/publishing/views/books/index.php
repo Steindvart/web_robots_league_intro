@@ -1,0 +1,9 @@
+<?php
+use yii\helpers\Html;
+
+$this->title = 'Books';
+?>
+
+<h1><?= Html::encode($this->title) ?></h1>
+
+<?= $this->render('books-grid', ['books' => $books]) ?>

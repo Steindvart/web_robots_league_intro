@@ -13,10 +13,10 @@ use yii\bootstrap5\NavBar;
     ]);
 
     $menuItems = [
-        ['label' => 'Main', 'url' => ['/site/index']],
-        ['label' => 'Books', 'url' => ['/site/books']],
-        ['label' => 'Authors', 'url' => ['/site/authors']],
-        ['label' => 'Genres', 'url' => ['/site/genres']],
+        ['label' => 'Main', 'url' => ['/']],
+        ['label' => 'Books', 'url' => ['/books']],
+        ['label' => 'Authors', 'url' => ['/authors']],
+        ['label' => 'Genres', 'url' => ['/genres']],
     ];
 
     echo Nav::widget([

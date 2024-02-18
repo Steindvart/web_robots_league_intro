@@ -6,6 +6,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
+use app\models\BookAuthorsGenres;
+
 class SiteController extends Controller
 {
     /**
@@ -42,21 +44,12 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+            ]
         ];
     }
 
     public function actionIndex()
     {
-        return $this->render('index');
-    }
-
-    public function actionBooks()
-    {
-        return $this->render('books');
+        return $this->render('index', ['books' => BookAuthorsGenres::getAllDataProvider()]);
     }
 }
