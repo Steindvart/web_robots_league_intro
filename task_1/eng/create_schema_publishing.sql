@@ -42,8 +42,8 @@ SELECT b.*,
   GROUP_CONCAT(DISTINCT CONCAT(a.Name, ' ', a.Surname) ORDER BY CONCAT(a.Name, ' ', a.Surname) SEPARATOR ', ') AS Authors,
   GROUP_CONCAT(DISTINCT g.Name ORDER BY g.Name SEPARATOR ', ') AS Genres
 FROM Books b
-JOIN Books_Authors ba ON b.ID = ba.Book_ID
-JOIN Authors a ON a.ID = ba.Author_ID
-JOIN Books_Genres bg ON b.ID = bg.Book_ID
-JOIN Genres g ON bg.Genre_ID = g.ID
+LEFT JOIN Books_Authors ba ON b.ID = ba.Book_ID
+LEFT JOIN Authors a ON a.ID = ba.Author_ID
+LEFT JOIN Books_Genres bg ON b.ID = bg.Book_ID
+LEFT JOIN Genres g ON bg.Genre_ID = g.ID
 GROUP BY b.ID;
