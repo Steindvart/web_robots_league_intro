@@ -8,7 +8,7 @@ use app\models\BookForm;
 
 class BookRecord extends ActiveRecord
 {
-   public static function tableName()
+  public static function tableName()
   {
     return 'books';
   }
