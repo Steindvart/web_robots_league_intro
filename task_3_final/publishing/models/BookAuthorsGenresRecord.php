@@ -5,11 +5,11 @@ namespace app\models;
 use yii\db\ActiveRecord;
 use yii\data\ArrayDataProvider;
 
-class Book extends ActiveRecord
+class BookAuthorsGenresRecord extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'books';
+        return 'books_authors_genres';
     }
 
     public function attributes()
@@ -20,13 +20,15 @@ class Book extends ActiveRecord
             'Name',
             'Pages',
             'Publish_date',
+            'Authors',
+            'Genres',
         ];
     }
 
     public static function getAllDataProvider()
     {
         return new ArrayDataProvider([
-            'allModels' => Book::find()->all(),
+            'allModels' => BookAuthorsGenresRecord::find()->all(),
         ]);
     }
 }

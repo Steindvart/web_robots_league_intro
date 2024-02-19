@@ -6,7 +6,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
-use app\models\BookAuthorsGenres;
+use app\models\BookAuthorsGenresRecord;
 
 class SiteController extends Controller
 {
@@ -50,6 +50,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index', ['books' => BookAuthorsGenres::getAllDataProvider()]);
+        return $this->render('index', ['books' => BookAuthorsGenresRecord::getAllDataProvider()]);
     }
 }

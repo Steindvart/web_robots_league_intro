@@ -18,7 +18,7 @@ use yii\helpers\Url;
       'buttons' => [
         'edit' => function ($url, $model) {
           return Html::a('<button class="btn btn-primary">Edit</button>',
-                          Url::to(['books/edit', 'id' => $model->ID]));
+                          Url::to(['books/update', 'id' => $model->ID]));
         },
         'delete' => function ($url, $model) {
           return Html::a('<button class="btn btn-danger">Delete</button>',

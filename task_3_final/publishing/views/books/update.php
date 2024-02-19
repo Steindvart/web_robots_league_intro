@@ -5,9 +5,9 @@ $this->title = 'Edit book info';
 ?>
 
 <h1><?= Html::encode($this->title) ?></h1>
-<h2>ID: <?= Html::encode($model->ID) ?></h2>
+<h2>ID: <?= Html::encode($id) ?></h2>
 
-<?= $this->render('book-info-form', [
+<?= $this->render('book-form', [
   'model'=> $model,
   'submitButton' => Html::submitButton('Save', ['class' => 'btn btn-success mt-2']),
 ]); ?>
