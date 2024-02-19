@@ -24,18 +24,31 @@ class BookRecord extends ActiveRecord
   public function attributes()
   {
     return [
-        'ID',
-        'ISBN',
-        'Name',
-        'Pages',
-        'Publish_date',
+      'ID',
+      'ISBN',
+      'Name',
+      'Pages',
+      'Publish_date',
+    ];
+  }
+
+  public function rules()
+  {
+    return [
+      // #PROBLEM - one source of validation rules for Book data input entityes (forms, etc)?
+      [['ISBN', 'Name', 'Pages'], 'required'],
+      [['ISBN'], 'unique', 'targetClass' => self::class, 'message' => 'This ISBN already in use.'],
+      ['ISBN', 'string', 'max' => 255],
+      ['Name', 'string', 'max' => 255],
+      ['Pages', 'integer', 'min' => 1, 'max' => 100000],
+      ['Publish_date', 'date', 'format' => 'php:Y-m-d'],
     ];
   }
 
   public static function getAllDataProvider()
   {
     return new ArrayDataProvider([
-        'allModels' => BookRecord::find()->all(),
+      'allModels' => BookRecord::find()->all(),
     ]);
   }
 }

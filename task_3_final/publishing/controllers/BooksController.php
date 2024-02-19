@@ -16,6 +16,8 @@ class BooksController extends Controller
 
     public function actionCreate()
     {
+      // #PROBLEM - how to merge Form and Record in one entity?
+      //            Or do data exchange better in another way?
       $form = new BookForm();
       if ($form->load(Yii::$app->request->post()) && $form->validate()) {
         $book = new BookRecord();
@@ -47,6 +49,12 @@ class BooksController extends Controller
         $book->attributesFromForm($form);
         if ($book->save()) {
           return $this->redirect(['index']);
+        } else {
+          // #DEFECT - no message in not validate case
+          // Yii::$app->session->setFlash(
+          //   'validate',
+          //   false
+          // );
         }
       }
 

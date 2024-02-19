@@ -12,6 +12,15 @@ class BookForm extends Model
     public $Pages;
     public $Publish_date;
 
+    public function attributeLabels() {
+      return [
+        'ISBN' => 'ISBN',
+        'Name' => 'Name',
+        'Pages' => 'Pages',
+        'Publish_date' => 'Publish date',
+      ];
+  }
+
     public function attributesFromRecord(BookRecord $record) {
       $this->ISBN = $record->ISBN;
       $this->Name = $record->Name;
@@ -25,7 +34,7 @@ class BookForm extends Model
         [['ISBN', 'Name', 'Pages'], 'required'],
         ['ISBN', 'string', 'max' => 255],
         ['Name', 'string', 'max' => 255],
-        ['Pages', 'integer', 'max' => 100000],
+        ['Pages', 'integer', 'min' => 1, 'max' => 100000],
         ['Publish_date', 'date', 'format' => 'php:Y-m-d'],
       ];
     }
