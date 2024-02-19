@@ -10,7 +10,7 @@ class AuthorSearch extends AuthorRecord
   public function rules()
   {
     return [
-      [['Name', 'Surname'], 'safe'],
+      [['ID', 'Name', 'Surname'], 'safe'],
     ];
   }
 
