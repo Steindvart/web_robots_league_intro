@@ -19,7 +19,7 @@ class BookForm extends Model
       'Pages' => 'Pages',
       'Publish_date' => 'Publish date',
     ];
-}
+  }
 
   public function attributesFromRecord(BookRecord $record) {
     $this->ISBN = $record->ISBN;
