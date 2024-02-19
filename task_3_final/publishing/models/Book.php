@@ -3,7 +3,7 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
-use \yii\data\ArrayDataProvider;
+use yii\data\ArrayDataProvider;
 
 class Book extends ActiveRecord
 {
