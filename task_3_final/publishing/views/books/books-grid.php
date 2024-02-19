@@ -2,10 +2,26 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+
+$books->pagination->pageSize=15;
 ?>
 
 <?= GridView::widget([
   'dataProvider' => $books,
+  'filterModel' => $searchModel,
+  'pager' => [
+    'class' => 'yii\widgets\LinkPager',
+    'options' => [
+        'class' => 'pagination',
+    ],
+    'linkOptions' => [
+        'class' => 'page-link',
+    ],
+    'activePageCssClass' => 'active',
+    'disabledPageCssClass' => 'disabled',
+    'nextPageLabel' => false,
+    'prevPageLabel' => false
+  ],
   'columns' => [
     'ID',
     'ISBN',

@@ -12,6 +12,6 @@ $this->title = 'Books';
     ?>
   </div>
   <div class="body-content">
-    <?= $this->render('books-grid', ['books' => $books]) ?>
+    <?= $this->render('books-grid', ['books' => $books, 'searchModel' => $searchModel]) ?>
   </div>
 </div>

@@ -5,13 +5,20 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\BookRecord;
+use app\models\BookSearch;
 use app\models\BookForm;
 
 class BooksController extends Controller
 {
   public function actionIndex()
   {
-    return $this->render('index', ['books' => BookRecord::getAllDataProvider()]);
+    $searchModel = new BookSearch();
+    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+    return $this->render('index', [
+      'books' => $dataProvider,
+      'searchModel' => $searchModel,
+    ]);
   }
 
   public function actionCreate()
