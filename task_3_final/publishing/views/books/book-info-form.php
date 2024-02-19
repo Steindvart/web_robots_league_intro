@@ -9,4 +9,6 @@ use yii\widgets\ActiveForm;
 <?= $form->field($model, 'Pages')->textInput() ?>
 <?= $form->field($model, 'Publish_date')->textInput() ?>
 
+<?= $submitButton ?>
+
 <?php ActiveForm::end(); ?>
