@@ -5,6 +5,9 @@ namespace app\models\books;
 use yii\db\ActiveRecord;
 use yii\data\ArrayDataProvider;
 
+use app\models\authors\AuthorRecord;
+use app\models\genres\GenreRecord;
+
 class BookAuthorsGenresRecord extends ActiveRecord
 {
   public static function tableName()
@@ -25,10 +28,54 @@ class BookAuthorsGenresRecord extends ActiveRecord
     ];
   }
 
+  public static function primaryKey()
+  {
+    return ['ID'];
+  }
+
+  public function getGenres()
+  {
+    return $this->hasMany(GenreRecord::class, ['ID' => 'Genre_ID'])
+                ->viaTable('Books_Genres', ['Book_ID' => 'ID']);
+  }
+
+  public function getAuthors()
+  {
+    return $this->hasMany(AuthorRecord::class, ['ID' => 'Author_ID'])
+                ->viaTable('Books_Authors', ['Book_ID' => 'ID']);
+  }
+
+  public static function getDataProviderByGenre($genreId)
+  {
+      return new ArrayDataProvider([
+          'allModels' => self::find()->innerJoinWith('genres')
+                          ->where(['genres.ID' => $genreId])
+                          ->all(),
+      ]);
+  }
+
+  public static function getDataProviderByAuthor($authorId)
+  {
+      return new ArrayDataProvider([
+          'allModels' => self::find()->innerJoinWith('authors')
+                          ->where(['authors.ID' => $authorId])
+                          ->all(),
+      ]);
+  }
+
+  public static function getDataProviderByGenreAndAuthor($genreId, $authorId)
+  {
+      return new ArrayDataProvider([
+          'allModels' => self::find()->innerJoinWith(['genres', 'authors'])
+                          ->where(['genres.ID' => $genreId, 'authors.ID' => $authorId])
+                          ->all(),
+      ]);
+  }
+
   public static function getAllDataProvider()
   {
     return new ArrayDataProvider([
-      'allModels' => BookAuthorsGenresRecord::find()->all(),
+      'allModels' => self::find()->all(),
     ]);
   }
 }

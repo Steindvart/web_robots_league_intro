@@ -3,7 +3,6 @@
 namespace app\models\genres;
 
 use yii\db\ActiveRecord;
-use yii\data\ArrayDataProvider;
 use app\models\genres\GenreForm;
 
 class GenreRecord extends ActiveRecord
@@ -35,10 +34,8 @@ class GenreRecord extends ActiveRecord
     ];
   }
 
-  public static function getAllDataProvider()
+  public static function findGenresNames(): array
   {
-    return new ArrayDataProvider([
-      'allModels' => GenreRecord::find()->all(),
-    ]);
+    return self::find()->select(['Name', 'ID'])->indexBy('ID')->column();
   }
 }

@@ -3,7 +3,7 @@
 namespace app\models\authors;
 
 use yii\db\ActiveRecord;
-use yii\data\ArrayDataProvider;
+use yii\db\Expression;
 use app\models\authors\AuthorForm;
 
 class AuthorRecord extends ActiveRecord
@@ -37,10 +37,11 @@ class AuthorRecord extends ActiveRecord
     ];
   }
 
-  public static function getAllDataProvider()
+  public static function findAuthorsNames(): array
   {
-    return new ArrayDataProvider([
-      'allModels' => AuthorRecord::find()->all(),
-    ]);
+    return self::find()
+      ->select([new Expression("CONCAT(Name, ' ', Surname) AS FullName"), 'ID'])
+      ->indexBy('ID')
+      ->column();
   }
 }

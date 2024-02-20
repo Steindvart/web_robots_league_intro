@@ -44,11 +44,4 @@ class BookRecord extends ActiveRecord
       ['Publish_date', 'date', 'format' => 'php:Y-m-d'],
     ];
   }
-
-  public static function getAllDataProvider()
-  {
-    return new ArrayDataProvider([
-      'allModels' => BookRecord::find()->all(),
-    ]);
-  }
 }
