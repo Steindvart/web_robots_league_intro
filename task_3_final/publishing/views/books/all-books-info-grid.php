@@ -2,6 +2,8 @@
 use yii\grid\GridView;
 
 $books->pagination->pageSize=15;
+// #FIX - bug when view link change to action link: 'site/index' -> 'site/filter-books'
+$books->pagination->route = 'site/index'
 ?>
 
 <?= GridView::widget([

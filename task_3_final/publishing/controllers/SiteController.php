@@ -22,7 +22,6 @@ class SiteController extends Controller
       $dataProvider = BookAuthorsGenresRecord::getDataProviderByGenreAndAuthor($genreId, $authorId);
     }
 
-    // #DEFECT - change link to '/filter-books' in pagination buttons
     return $this->renderPartial('/books/all-books-info-grid', ['books' => $dataProvider]);
   }
 
