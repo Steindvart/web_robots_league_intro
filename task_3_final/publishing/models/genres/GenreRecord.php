@@ -38,4 +38,17 @@ class GenreRecord extends ActiveRecord
   {
     return self::find()->select(['Name', 'ID'])->indexBy('ID')->column();
   }
+
+  public static function findTopGenres(int $limit)
+  {
+    return self::find()
+      ->select(['ID', 'Name', 'COUNT(bg.Book_ID) AS BooksQuantity'])
+      ->from('Genres g')
+      ->leftJoin('Books_Genres bg', 'g.ID = bg.Genre_ID')
+      ->groupBy(['g.ID'])
+      ->orderBy(['BooksQuantity' => SORT_DESC])
+      ->limit($limit)
+      ->asArray()
+      ->all();
+  }
 }

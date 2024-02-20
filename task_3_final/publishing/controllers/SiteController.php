@@ -31,6 +31,8 @@ class SiteController extends Controller
       'books' => BookAuthorsGenresRecord::getAllDataProvider(),
       'genres' => GenreRecord::findGenresNames(),
       'authors' => AuthorRecord::findAuthorsNames(),
+      'topAuthors' => AuthorRecord::findTopAuthors(3),
+      'topGenres' => GenreRecord::findTopGenres(3),
     ]);
   }
 }

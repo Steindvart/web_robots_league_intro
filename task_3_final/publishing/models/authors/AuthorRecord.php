@@ -44,4 +44,18 @@ class AuthorRecord extends ActiveRecord
       ->indexBy('ID')
       ->column();
   }
+
+  public static function findTopAuthors(int $limit)
+  {
+    return self::find()
+      ->select(['CONCAT(a.Name, " ", a.Surname) AS Fullname', 'COUNT(ba.Book_ID) AS BooksQuantity'])
+      ->from('Authors a')
+      ->leftJoin('Books_Authors ba', 'a.ID = ba.Author_ID')
+      ->leftJoin('Books b', 'ba.Book_ID = b.ID')
+      ->groupBy(['a.ID'])
+      ->orderBy(['BooksQuantity' => SORT_DESC])
+      ->limit($limit)
+      ->asArray()
+      ->all();
+  }
 }
