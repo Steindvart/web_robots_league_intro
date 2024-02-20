@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\authors;
 
 use yii\base\Model;
-use app\models\AuthorRecord;
+use app\models\authors\AuthorRecord;
 
 class AuthorForm extends Model
 {

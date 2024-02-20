@@ -4,9 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\AuthorRecord;
-use app\models\AuthorSearch;
-use app\models\AuthorForm;
+use app\models\authors\AuthorRecord;
+use app\models\authors\AuthorSearch;
+use app\models\authors\AuthorForm;
 
 class AuthorsController extends Controller
 {

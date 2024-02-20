@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\authors;
 
 use yii\data\ActiveDataProvider;
-use app\models\AuthorRecord;
+use app\models\authors\AuthorRecord;
 
 class AuthorSearch extends AuthorRecord
 {

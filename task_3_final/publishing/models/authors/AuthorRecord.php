@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\authors;
 
 use yii\db\ActiveRecord;
 use yii\data\ArrayDataProvider;
-use app\models\AuthorForm;
+use app\models\authors\AuthorForm;
 
 class AuthorRecord extends ActiveRecord
 {
