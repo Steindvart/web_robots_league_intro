@@ -27,7 +27,7 @@ $books->pagination->route = 'site/index'
     'Name',
     'Pages',
     'Publish_date',
-    'Authors',
     'Genres',
+    'Authors',
   ],
 ]); ?>
