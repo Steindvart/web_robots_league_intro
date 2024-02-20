@@ -48,7 +48,7 @@ class AuthorRecord extends ActiveRecord
   public static function findTopAuthors(int $limit)
   {
     return self::find()
-      ->select(['CONCAT(a.Name, " ", a.Surname) AS Fullname', 'COUNT(ba.Book_ID) AS BooksQuantity'])
+      ->select(['a.ID', 'CONCAT(a.Name, " ", a.Surname) AS Fullname', 'COUNT(ba.Book_ID) AS BooksQuantity'])
       ->from('Authors a')
       ->leftJoin('Books_Authors ba', 'a.ID = ba.Author_ID')
       ->leftJoin('Books b', 'ba.Book_ID = b.ID')

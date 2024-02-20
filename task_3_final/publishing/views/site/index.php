@@ -55,7 +55,7 @@ $this->registerJs($script, View::POS_READY);
         <h2>Top <?= count($topAuthors)?> authors</h2>
         <ul>
           <?php foreach ($topAuthors as $author): ?>
-            <li><?= $author['Fullname'] ?> (<?= $author['BooksQuantity'] ?> books)</li>
+            <li><?= $author['Fullname'] ?> (id: <?= $author['ID'] ?>): <?= $author['BooksQuantity'] ?> books</li>
           <?php endforeach; ?>
         </ul>
       </div>
