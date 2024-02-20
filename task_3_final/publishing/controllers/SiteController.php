@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 
 use app\models\books\BookAuthorsGenresRecord;
 use app\models\genres\GenreRecord;
@@ -12,44 +10,6 @@ use app\models\authors\AuthorRecord;
 
 class SiteController extends Controller
 {
-  /**
-   * {@inheritdoc}
-   */
-  public function behaviors()
-  {
-    return [
-      'access' => [
-        'class' => AccessControl::class,
-        'only' => ['logout'],
-        'rules' => [
-          [
-            'actions' => ['logout'],
-            'allow' => true,
-            'roles' => ['@'],
-          ],
-        ],
-      ],
-      'verbs' => [
-        'class' => VerbFilter::class,
-        'actions' => [
-          'logout' => ['post'],
-        ],
-      ],
-    ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function actions()
-  {
-    return [
-      'error' => [
-        'class' => 'yii\web\ErrorAction',
-      ]
-    ];
-  }
-
   public function actionFilterBooks($genreId, $authorId)
   {
     if ($genreId == 'All' && $authorId == 'All') {
@@ -62,6 +22,7 @@ class SiteController extends Controller
       $dataProvider = BookAuthorsGenresRecord::getDataProviderByGenreAndAuthor($genreId, $authorId);
     }
 
+    // #DEFECT - change link to '/filter-books' in pagination buttons
     return $this->renderPartial('/books/all-books-info-grid', ['books' => $dataProvider]);
   }
 
