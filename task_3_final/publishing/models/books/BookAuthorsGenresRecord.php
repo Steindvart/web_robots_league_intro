@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\books;
 
 use yii\db\ActiveRecord;
 use yii\data\ArrayDataProvider;

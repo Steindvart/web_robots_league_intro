@@ -4,9 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\BookRecord;
-use app\models\BookSearch;
-use app\models\BookForm;
+use app\models\books\BookRecord;
+use app\models\books\BookSearch;
+use app\models\books\BookForm;
 
 class BooksController extends Controller
 {

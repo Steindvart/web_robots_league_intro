@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\books;
 
 use yii\base\Model;
-use app\models\BookRecord;
+use app\models\books\BookRecord;
 
 class BookForm extends Model
 {

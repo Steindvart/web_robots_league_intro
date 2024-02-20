@@ -6,7 +6,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
-use app\models\BookAuthorsGenresRecord;
+use app\models\books\BookAuthorsGenresRecord;
 
 class SiteController extends Controller
 {

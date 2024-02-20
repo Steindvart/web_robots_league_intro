@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\books;
 
 use yii\db\ActiveRecord;
 use yii\data\ArrayDataProvider;
-use app\models\BookForm;
+use app\models\books\BookForm;
 
 class BookRecord extends ActiveRecord
 {

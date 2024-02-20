@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\books;
 
 use yii\data\ActiveDataProvider;
-use app\models\BookRecord;
+use app\models\books\BookRecord;
 
 class BookSearch extends BookRecord
 {
