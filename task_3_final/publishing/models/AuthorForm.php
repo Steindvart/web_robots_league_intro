@@ -25,6 +25,7 @@ class AuthorForm extends Model
   public function rules()
   {
     return [
+      [['Name'], 'required'],
       ['Name', 'string', 'max' => 255],
       ['Surname', 'string', 'max' => 255],
     ];
