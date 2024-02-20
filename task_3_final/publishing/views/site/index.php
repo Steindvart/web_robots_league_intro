@@ -10,16 +10,16 @@ $this->title = 'Publishing house';
 $script =
 <<< JS
 $(document).on('change', '#genre-filter, #author-filter', function() {
-    var genreId = $('#genre-filter').val();
-    var authorId = $('#author-filter').val();
-    $.ajax({
-        url: '/site/filter-books',
-        type: 'GET',
-        data: { genreId: genreId, authorId: authorId },
-        success: function(data) {
-            $('.books-all-info').html(data);
-        }
-    });
+  var genreId = $('#genre-filter').val();
+  var authorId = $('#author-filter').val();
+  $.ajax({
+    url: '/site/filter-books',
+    type: 'GET',
+    data: { genreId: genreId, authorId: authorId },
+    success: function(data) {
+      $('.books-all-info').html(data);
+    }
+  });
 });
 JS;
 
