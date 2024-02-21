@@ -32,7 +32,7 @@ class BookSearch extends BookRecord
     $query->andFilterWhere(['like', 'ISBN', $this->ISBN]);
     $query->andFilterWhere(['like', 'Name', $this->Name]);
     $query->andFilterWhere(['Pages' => $this->Pages]);
-    $query->andFilterWhere(['Publish_date' => $this->Publish_date]);
+    $query->andFilterWhere(['like', 'Publish_date', $this->Publish_date]);
 
     return $dataProvider;
   }

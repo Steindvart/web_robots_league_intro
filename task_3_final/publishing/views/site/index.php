@@ -52,18 +52,25 @@ $this->registerJs($script, View::POS_READY);
     <hr>
     <div class="top-list-content d-flex align-items-center">
       <div class="top-authors">
-        <h2>Top <?= count($topAuthors)?> authors</h2>
+        <h2>Top 3 authors</h2>
         <ul>
           <?php foreach ($topAuthors as $author): ?>
-            <li><?= $author['Fullname'] ?> (id: <?= $author['ID'] ?>): <?= $author['BooksQuantity'] ?> books</li>
+            <li>
+              <?= $author['Fullname'] ?>
+              (<i>id: <?= $author['ID'] ?></i>):
+              <?= $author['BooksQuantity'] ?> books
+            </li>
           <?php endforeach; ?>
         </ul>
       </div>
       <div class="top-Genres ms-5">
-        <h2>Top <?= count($topGenres)?> genres</h2>
+        <h2>Top 3 genres</h2>
         <ul>
           <?php foreach ($topGenres as $genre): ?>
-            <li><?= $genre['Name'] ?> (<?= $genre['BooksQuantity'] ?> books)</li>
+            <li>
+              <?= $genre['Name'] ?>:
+              <?= $genre['BooksQuantity'] ?> books
+            </li>
           <?php endforeach; ?>
         </ul>
       </div>

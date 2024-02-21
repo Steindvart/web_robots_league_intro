@@ -58,6 +58,7 @@ class BooksController extends Controller
         return $this->redirect(['index']);
       } else {
         // #DEFECT - no message in not validate case
+        // #SOLUTION - send err msg in response
         // Yii::$app->session->setFlash(
         //   'validate',
         //   false
