@@ -185,4 +185,4 @@ SELECT
 FROM
     Books b
 ORDER BY RAND()
-LIMIT 30;  -- количество записей в таблице Books_Genres
+LIMIT 30;
