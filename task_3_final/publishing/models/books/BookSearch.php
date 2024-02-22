@@ -24,6 +24,7 @@ class BookSearch extends BookRecord
 
     $this->load($params);
 
+    // #REFACTORING - keep validation or remove, because param is 'safe'?
     if (!$this->validate()) {
       return $dataProvider;
     }

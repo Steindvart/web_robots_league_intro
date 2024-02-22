@@ -3,9 +3,9 @@
 namespace app\models\books;
 
 use yii\db\ActiveRecord;
-use yii\data\ArrayDataProvider;
 use app\models\books\BookForm;
 
+// #DEFECT - table name is associated with the class name
 class BookRecord extends ActiveRecord
 {
   public static function tableName()

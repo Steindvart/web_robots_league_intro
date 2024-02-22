@@ -8,6 +8,7 @@ use yii\data\ArrayDataProvider;
 use app\models\authors\AuthorRecord;
 use app\models\genres\GenreRecord;
 
+// #REFACTORING - we can establish relationships between tables without creating additional sql views.
 class BookAuthorsGenresRecord extends ActiveRecord
 {
   public static function tableName()
@@ -33,6 +34,7 @@ class BookAuthorsGenresRecord extends ActiveRecord
     return ['ID'];
   }
 
+  // #REFACTORING - establish relationships like this in BookRecord and etc.
   public function getGenres()
   {
     return $this->hasMany(GenreRecord::class, ['ID' => 'Genre_ID'])
